@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Sharing Platform</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="background-image: url('{% static 'images/dark_academia.jpg' %}'); background-size: cover; background-position: center;">
+    <div style="text-align: center; color: white; padding: 100px;">
+        <h1> ⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆ Welcome to the Book Review Platform  ⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ </h1>
+        <p>Your one-stop destination for sharing experiences and literature escapades.</p>
+        
+        <!-- Uiverse.io Button -->
+        <a href="{% url 'book_list' %}">
+            <button class="button type1">
+                <span class="btn-txt">Browse Books</span>
+            </button>
+        </a>
+    </div>
+</body>
+</html>

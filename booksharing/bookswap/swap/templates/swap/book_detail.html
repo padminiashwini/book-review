@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylo.css' %}">
+    <style>
+        /* Global margin for form elements */
+        form div {
+            margin-bottom: 20px; /* Adds space between each div */
+        }
+    </style>
+</head>
+<body style="background-image: url('{% static 'images/donatello.jpg' %}'); background-size: cover; background-position: center;">
+
+    <div class="content">
+        <h1>{{ book.title }}</h1>
+        <h3>Author: {{ book.author }}</h3>
+        <p><strong>Description:</strong> {{ book.description }}</p>
+        <p><strong>Average Rating:</strong> {{ book.average_rating|floatformat:1 }} / 5</p> <!-- Average rating rounded to 1 decimal -->
+
+        <a href="{% url 'book_list' %}">Back to Browse Books</a>
+
+        <div class="reviews-section">
+            <h2>Reviews:</h2>
+            {% if reviews %}
+                <ul>
+                    {% for review in reviews %}
+                        <li>
+                            <p><strong>{{ review.user_name }}</strong> (Rating: {{ review.rating }} / 5)</p>
+                            <p>{{ review.review_text }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reviews yet for this book.</p>
+            {% endif %}
+
+            <h3>Leave a Review:</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="user_name">Your Name:</label>
+                    <input type="text" id="user_name" name="user_name" required>
+                </div>
+                <div>
+                    <label for="review_text">Your Review:</label>
+                    <textarea id="review_text" name="review_text" required></textarea>
+                </div>
+                <div>
+                    <label for="rating">Rating:</label><br>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 stars">☆</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">☆</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">☆</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">☆</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">☆</label>
+                    </div>
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript to log the selected rating -->
+    <script>
+        document.querySelectorAll('.star-rating input').forEach((star) => {
+            star.addEventListener('change', () => {
+                const ratingValue = star.value;
+                console.log(`User selected ${ratingValue} stars`);
+            });
+        });
+    </script>
+</body>
+</html>

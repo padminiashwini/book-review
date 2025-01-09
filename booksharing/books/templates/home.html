@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Sharing Platform</title>
+</head>
+<body>
+    <h1>Welcome to the Book Sharing Platform!</h1>
+    
+    <h2>Available Books:</h2>
+    <ul>
+        {% for book in books %}
+            <li>
+                <a href="{% url 'borrow_book' book.id %}">{{ book.title }} by {{ book.author }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

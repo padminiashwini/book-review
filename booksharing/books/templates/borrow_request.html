@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request to Borrow {{ book.title }}</title>
+</head>
+<body>
+    <h1>Request to Borrow {{ book.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Request Borrow</button>
+    </form>
+</body>
+</html>

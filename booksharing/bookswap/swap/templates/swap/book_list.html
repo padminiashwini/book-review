@@ -1,0 +1,136 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            margin: 0;
+            background-image: url("{% static 'images/statue.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-container {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            z-index: 10; /* Increase to make it appear above other elements */
+        }
+
+
+        .input-container {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .input {
+            width: 100%;
+            height: 25px;
+            padding: 10px;
+            font-size: 16px;
+            font-family: 'Helvetica', sans-serif;
+            box-shadow: 6px 6px 0 #000;
+            border: 3px solid #000;
+        }
+
+        .input::placeholder {
+            color: #888;
+        }
+
+        .input:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 #000;
+        }
+
+        .input:focus {
+            background-color: #010101;
+            color: #fff;
+            border-color: #d6d9dd;
+        }
+
+        .input:focus::placeholder {
+            color: #fff;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            margin: 10px 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: black;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        ul li a:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+     <!-- Search Form -->
+     <div class="search-container">
+        <form method="get" action="{% url 'book_list' %}">
+            <div class="input-container">
+                <input
+                    class="input"
+                    name="q"  
+                    type="text"
+                    placeholder="Search ❤︎"
+                    value="{{ query|default:'' }}"
+                />
+            </div>
+        </form>        
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Browse Available Books</h1>
+
+        <ul>
+            {% for book in books %}
+                <li>
+                    <a class="book-button" href="{% url 'book_detail' book.id %}">
+                        <h3>{{ book.title }}</h3>
+                    </a>
+                </li>
+            {% empty %}
+                <li>No books match your search criteria.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

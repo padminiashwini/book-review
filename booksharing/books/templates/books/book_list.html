@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book List</title>
+</head>
+<body>
+    <!-- Authentication Links -->
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'add_book' %}">Add a Book</a> | 
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    
+    <h1>Available Books</h1>
+    <hr>
+
+    <!-- List of Books -->
+    {% for book in books %}
+    <div>
+        <h3>{{ book.title }}</h3>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Description:</strong> {{ book.description }}</p>
+        {% if book.available %}
+            <a href="{% url 'borrow_book' book.id %}">Borrow</a>
+        {% else %}
+            <p><em>Currently Unavailable</em></p>
+        {% endif %}
+    </div>
+    <hr>
+    {% empty %}
+    <p>No books available at the moment.</p>
+    {% endfor %}
+</body>
+</html>

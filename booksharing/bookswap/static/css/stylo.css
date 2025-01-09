@@ -1,0 +1,57 @@
+/* General styles for content */
+.content {
+    background-color: rgba(255, 255, 255, 0.8); /* Light background overlay for better readability */
+    color: black; /* Set text color to black */
+    font-family: 'Georgia', serif; /* Professional font family */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+h1, h3 {
+    margin: 0;
+    padding: 10px 0;
+    font-family: 'Georgia', serif; /* Professional font family for headings */
+    color: black; /* Set heading color to black */
+}
+
+p {
+    font-size: 16px; /* Slightly larger text for the description */
+    line-height: 1.5; /* Improve readability with more spacing between lines */
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+.star-rating {
+    direction: rtl; /* Reverse the order for proper star alignment */
+    display: inline-block;
+    font-size: 2rem; /* Adjust size */
+}
+
+.star-rating input {
+    display: none; /* Hide the radio buttons */
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star-rating label:hover, .star-rating label:hover ~ label, .star-rating input:checked ~ label {
+    color: #f5c518; /* Highlighted star color */
+}
