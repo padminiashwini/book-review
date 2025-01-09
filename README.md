@@ -44,6 +44,19 @@ Installation and Setup
     ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows: venv\Scripts\activate
-4. 
+4. Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+5. Run database migrations:
+   ```bash
+   python manage.py migrate
+6. Start the development server:
+    ```bash
+    python manage.py runserver
+
+
+
+
+
 
 
