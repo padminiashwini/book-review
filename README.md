@@ -53,10 +53,3 @@ Installation and Setup
 6. Start the development server:
     ```bash
     python manage.py runserver
-
-
-
-
-
-
-
