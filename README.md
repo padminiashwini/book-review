@@ -37,3 +37,13 @@ Installation and Setup
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/book-review-platform.git
+2. Navigate to the project directory:
+   ```bash
+   cd book-review-platform
+3. Create a virtual environment and activate it:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+4. 
+
+
